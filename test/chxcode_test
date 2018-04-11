@@ -1,0 +1,10 @@
+#!/bin/sh
+
+. ./test/helper
+
+test_works() {
+  assertTrue true
+}
+
+# shellcheck source=/dev/null
+SHUNIT_PARENT=$0 . $SHUNIT2
