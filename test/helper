@@ -3,6 +3,4 @@
 [ -z "$SHUNIT2" ] && SHUNIT2=/usr/local/bin/shunit2
 [ -n "$ZSH_VERSION" ] && setopt shwordsplit
 
-export PREFIX="$PWD/test"
-export HOME="$PREFIX/home"
 export PATH="$PWD/bin:$PATH"

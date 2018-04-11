@@ -1,0 +1,9 @@
+#!/bin/sh
+
+APPLICATIONS=${APPLICATIONS-/Applications/}
+
+find_xcodes() {
+  find "$APPLICATIONS" -maxdepth 1 -name "Xcode*.app" "$@"
+}
+
+find_xcodes -exec basename {} \; | sed 's/Xcode-//' | sed 's/\.app//'
