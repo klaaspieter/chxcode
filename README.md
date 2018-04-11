@@ -24,5 +24,9 @@ $ chxcode
 $ echo "$DEVELOPER_DIR"
 /Applications/Xcode-9.2.app/Contents/Developer
 ```
+## Acknowledgements
 
+- [postmodern] for [chruby]
 
+[postmodern]: https://github.com/postmodern
+[chruby]: https://github.com/postmodern/chruby
