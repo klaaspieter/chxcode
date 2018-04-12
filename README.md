@@ -4,6 +4,12 @@ Changes the current Xcode.
 
 ## Usage
 
+With the following in your `.bashrc`, `.zshrc` file:
+
+```sh
+source /usr/local/share/chxcode/chxcode
+```
+
 List available Xcodes:
 
 ```sh

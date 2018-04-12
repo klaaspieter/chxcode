@@ -1,4 +1,0 @@
-#!/bin/sh
-
-#shellcheck source=share/chxcode/chxcode
-. "${0%/*}/../share/chxcode/chxcode"
