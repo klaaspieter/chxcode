@@ -3,6 +3,7 @@
 . ./test/helper
 
 test_exec_with_no_arguments() {
+  touch "$APPLICATIONS/Xcode.app"
   touch "$APPLICATIONS/Xcode-9.3.app"
   touch "$APPLICATIONS/Xcode-9.4.app"
 
