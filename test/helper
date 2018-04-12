@@ -1,4 +1,4 @@
-#!/bin/sh
+# shellcheck shell=sh
 
 [ -z "$SHUNIT2" ] && SHUNIT2=/usr/local/bin/shunit2
 [ -n "$ZSH_VERSION" ] && setopt shwordsplit

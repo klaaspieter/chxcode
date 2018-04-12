@@ -1,4 +1,4 @@
-#!/bin/sh
+# shellcheck shell=sh
 
 . ./test/helper
 
@@ -19,6 +19,14 @@ test_change_unknown_xcode_reports_error() {
 test_change_unknown_xcode_exit_code() {
   chxcode 1.0 2 > /dev/null 2>&1
   assertEquals 1 $?
+}
+
+test_change_xcode() {
+  touch "$APPLICATIONS/Xcode-9.3.app"
+
+  chxcode 9.3
+
+  assertEquals "$APPLICATIONS/Xcode-9.3.app/Contents/Developer" "$DEVELOPER_DIR"
 }
 
 # shellcheck source=/dev/null
