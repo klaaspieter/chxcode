@@ -4,3 +4,4 @@
 [ -n "$ZSH_VERSION" ] && setopt shwordsplit
 
 . ./share/chxcode/chxcode
+unset DEVELOPER_DIR
