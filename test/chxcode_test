@@ -11,5 +11,10 @@ test_exec_with_no_arguments() {
   assertEquals "should print installed xcodes" "9.3 9.4" "$xcodes"
 }
 
+test_change_unknown_xcode() {
+  assertEquals "Unknown Xcode: 1.0" "$(chxcode 1.0 2>&1)"
+
+}
+
 # shellcheck source=/dev/null
 SHUNIT_PARENT=$0 . $SHUNIT2

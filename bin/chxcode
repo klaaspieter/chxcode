@@ -6,4 +6,15 @@ find_xcodes() {
   find "$APPLICATIONS" -maxdepth 1 -name "Xcode*.app" "$@"
 }
 
-find_xcodes -exec basename {} \; | sed 's/Xcode-//' | sed 's/\.app//'
+find_xcode_versions() {
+  find_xcodes -exec basename {} \; | sed 's/Xcode-//' | sed 's/\.app//'
+}
+
+case "$1" in
+  "")
+    find_xcode_versions
+    ;;
+
+  *)
+    echo "Unknown Xcode: $1" >&2
+esac
