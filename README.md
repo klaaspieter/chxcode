@@ -31,6 +31,15 @@ $ echo "$DEVELOPER_DIR"
 /Applications/Xcode-9.2.app/Contents/Developer
 ```
 
+## Auto-switching
+
+To automatically switch the current Xcode version when you `cd` between different directories, load `auto` in `~/.bashrc` or `.zshrc`:
+
+```sh
+source /usr/local/share/chxcode/chxcode
+source /usr/local/share/chxcode/auto
+```
+
 ## Test
 
 With [shunit2] installed, run:
