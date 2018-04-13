@@ -4,12 +4,13 @@
 
 test_exec_with_no_arguments() {
   touch "$APPLICATIONS/Xcode.app"
+  touch "$APPLICATIONS/Xcode-1.0.app"
   touch "$APPLICATIONS/Xcode-9.3.app"
   touch "$APPLICATIONS/Xcode-9.4.app"
 
   xcodes=$(chxcode | tr '\n' ' ' | xargs)
 
-  assertEquals "should print installed xcodes" "9.3 9.4" "$xcodes"
+  assertEquals "should print installed xcodes" "9.3 9.4 1.0" "$xcodes"
 }
 
 test_change_unknown_xcode_reports_error() {

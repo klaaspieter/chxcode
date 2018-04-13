@@ -12,17 +12,13 @@ error=0
 
 for test in ${0%/*}/*_test; do
 	log "Running $test under $SHELL (interactive) ..."
-  applications="$(mktemp -d)"
-	APPLICATIONS="$applications" "$SHELL" "$@" -i "$test" || error=1
-  rm -r "$applications"
+	"$SHELL" "$@" -i "$test" || error=1
 	echo
 done
 
 for test in ${0%/*}/*_test; do
 	log "Running $test under $SHELL (non-interactive) ..."
-  applications="$(mktemp -d)"
-	APPLICATIONS="$applications" "$SHELL" "$@" "$test" || error=1
-  rm -r "$applications"
+	"$SHELL" "$@" "$test" || error=1
 	echo
 done
 

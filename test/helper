@@ -5,3 +5,11 @@
 
 . ./share/chxcode/chxcode
 unset DEVELOPER_DIR
+
+setUp() {
+  APPLICATIONS="$(mktemp -d)"
+}
+
+tearDown() {
+  rm -r "$APPLICATIONS"
+}
