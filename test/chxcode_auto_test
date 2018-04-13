@@ -33,7 +33,7 @@ test_auto_enter_versioned_directory() {
   touch "$APPLICATIONS/Xcode-9.3.app"
   echo "9.3" > "$test_project_dir/.xcode-version"
 
-  cd "$test_project_dir" && chxcode_auto || return 2
+  cd "$test_project_dir" && chxcode_auto
 
   assertEquals "should switch Xcode when entering a versioned directory" \
     "$APPLICATIONS/Xcode-9.3.app/Contents/Developer" \
@@ -45,10 +45,23 @@ test_auto_enter_versioned_subdirectory() {
   echo "9.0" > "$test_project_dir/.xcode-version"
   mkdir "$test_project_dir/subdir"
 
-  cd "$test_project_dir/subdir" && chxcode_auto || return 2
+  cd "$test_project_dir/subdir" && chxcode_auto
 
-  assertEquals "should switch Xcode when entering a versioned directory" \
+  assertEquals "should switch Xcode when entering a subdirectory of a versioned directory" \
     "$APPLICATIONS/Xcode-9.0.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+}
+
+test_auto_enter_subdir() {
+  touch "$APPLICATIONS/Xcode-8.0.app"
+  echo "8.0" > "$test_project_dir/.xcode-version"
+  mkdir "$test_project_dir/subdir"
+
+  cd "$test_project_dir" && chxcode_auto
+  cd "subdir" && chxcode_auto
+
+  assertEquals "should keep the current Xcode when entering a sub-directory" \
+    "$APPLICATIONS/Xcode-8.0.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
