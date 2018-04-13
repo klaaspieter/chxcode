@@ -13,5 +13,5 @@ setUp() {
 }
 
 tearDown() {
-  rm -r "$APPLICATIONS"
+  [ -d "$APPLICATIONS" ] && rm -r "$APPLICATIONS"
 }
