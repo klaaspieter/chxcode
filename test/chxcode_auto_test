@@ -9,6 +9,16 @@ test_auto_loaded_in_zsh() {
   assertEquals "chxcode_auto" "${preexec_functions:?}"
 }
 
+test_auto_load_is_idempotent_in_zsh() {
+  [ -n "$ZSH_VERSION" ] || return
+
+  . ./share/chxcode/auto
+
+  assertNotEquals "should not add chxcode twice" \
+    "${preexec_functions:?}" \
+    "chxcode_auto chxcode_auto"
+}
+
 test_auto_loaded_in_bash() {
   [ -n "$BASH_VERSION" ] || return
 
