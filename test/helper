@@ -8,10 +8,19 @@ unset DEVELOPER_DIR
 unset APPLICATIONS
 
 setUp() {
-  APPLICATIONS="$(mktemp -d)"
+  tmpdir="$(mktemp -d)"
+
+  APPLICATIONS="$tmpdir/Applications"
+  mkdir "$APPLICATIONS"
   export APPLICATIONS
+
+  test_project_dir="$tmpdir/project"
+  mkdir "$test_project_dir"
+  export test_project_dir
 }
 
 tearDown() {
-  [ -d "$APPLICATIONS" ] && rm -r "$APPLICATIONS"
+  unset APPLICATIONS
+  unset tmpdir
+  unset DEVELOPER_DIR
 }
