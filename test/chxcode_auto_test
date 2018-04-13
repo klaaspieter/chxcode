@@ -3,6 +3,10 @@
 . ./share/chxcode/auto
 . ./test/helper
 
+setUp() {
+  test_project_dir="$(mktemp -d)"
+}
+
 test_auto_loaded_in_zsh() {
   [ -n "$ZSH_VERSION" ] || return
 
@@ -27,6 +31,21 @@ test_auto_loaded_in_bash() {
 
   assertTrue "did not add a trap hook for chxcode_auto" \
     "$(echo "$output" | grep ".*chxcode_auto.*")"
+}
+
+test_auto_enter_versioning_directory() {
+  touch "$APPLICATIONS/Xcode-9.3.app"
+  echo "9.3" > "$test_project_dir/.xcode-version"
+
+  cd "$test_project_dir" && chxcode_auto || return 2
+
+  assertEquals "should switch Xcode when entering a versioned directory" \
+    "$APPLICATIONS/Xcode-9.3.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+}
+
+tearDown() {
+  cd "$PWD" || return 2
 }
 
 # shellcheck source=/dev/null
