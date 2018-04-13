@@ -65,5 +65,17 @@ test_auto_enter_subdir() {
     "$DEVELOPER_DIR"
 }
 
+test_auto_leave_versioned_dir() {
+  touch "$APPLICATIONS/Xcode-8.0.app"
+  echo "8.0" > "$test_project_dir/.xcode-version"
+
+  cd "$test_project_dir" && chxcode_auto
+  cd "$test_project_dir/.." && chxcode_auto
+
+  assertNull "should reset the current Xcode when leaving a versioned directory" \
+    "$DEVELOPER_DIR"
+
+}
+
 # shellcheck source=/dev/null
 SHUNIT_PARENT=$0 . $SHUNIT2

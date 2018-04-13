@@ -9,10 +9,17 @@ function chxcode_auto() {
     dir="${dir%/*}"
     if { read -r version <"$dir/.xcode-version"; } 2>/dev/null || [[ -n "$version" ]]; then
       version="${version%%[[:space:]]}"
+      XCODE_AUTO_VERSION=$version
       chxcode "$version"
       return $?
     fi
   done
+
+  if [[ -n "$XCODE_AUTO_VERSION" ]]; then
+    unset DEVELOPER_DIR
+    unset XCODE_AUTO_VERSION
+  fi
+
 
 }
 
