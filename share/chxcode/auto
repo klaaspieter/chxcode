@@ -1,6 +1,12 @@
 # shellcheck shell=bash
 
+function chxcode_auto() {
+  true
+}
+
 if [ -n "$ZSH_VERSION" ]; then
   preexec_functions+=("chxcode_auto")
+elif [ -n "$BASH_VERSION" ]; then
+  trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chxcode_auto' DEBUG
 fi
 

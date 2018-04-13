@@ -9,5 +9,15 @@ test_auto_loaded_in_zsh() {
   assertEquals "chxcode_auto" "${preexec_functions:?}"
 }
 
+test_auto_loaded_in_bash() {
+  [ -n "$BASH_VERSION" ] || return
+
+  command=". $PWD/share/chxcode/auto && trap -p DEBUG"
+  output="$("$SHELL" -c "$command")"
+
+  assertTrue "did not add a trap hook for chxcode_auto" \
+    "$(echo "$output" | grep ".*chxcode_auto.*")"
+}
+
 # shellcheck source=/dev/null
 SHUNIT_PARENT=$0 . $SHUNIT2
