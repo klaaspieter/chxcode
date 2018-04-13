@@ -48,6 +48,18 @@ With [shunit2] installed, run:
 $ ./test/runner
 ```
 
+To run individual test files:
+
+```sh
+# Interactive shell
+zsh -i test/[name]_test
+bash -i test/[name]_test
+
+# Non-interactive shell
+zsh test/[name]_test
+bash test/[name]_test
+```
+
 [shunit2]: https://github.com/kward/shunit://github.com/kward/shunit2 
 
 ## Acknowledgements
