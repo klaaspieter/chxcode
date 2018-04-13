@@ -65,6 +65,20 @@ test_auto_enter_subdir() {
     "$DEVELOPER_DIR"
 }
 
+test_auto_modified_version() {
+  touch "$APPLICATIONS/Xcode-8.1.app"
+  touch "$APPLICATIONS/Xcode-8.2.app"
+  echo "8.1" > "$test_project_dir/.xcode-version"
+  cd "$test_project_dir" && chxcode_auto
+
+  echo "8.2" > "$test_project_dir/.xcode-version" && chxcode_auto
+
+  assertEquals "should detect changes to the Xcode version" \
+    "$APPLICATIONS/Xcode-8.2.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+
+}
+
 test_auto_leave_versioned_dir() {
   touch "$APPLICATIONS/Xcode-8.0.app"
   echo "8.0" > "$test_project_dir/.xcode-version"
