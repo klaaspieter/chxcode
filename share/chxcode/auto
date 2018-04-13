@@ -1,0 +1,6 @@
+# shellcheck shell=bash
+
+if [ -n "$ZSH_VERSION" ]; then
+  preexec_functions+=("chxcode_auto")
+fi
+

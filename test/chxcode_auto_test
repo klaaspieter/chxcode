@@ -1,0 +1,13 @@
+# shellcheck shell=sh
+
+. ./share/chxcode/auto
+. ./test/helper
+
+test_auto_loaded_in_zsh() {
+  [ -n "$ZSH_VERSION" ] || return
+
+  assertEquals "chxcode_auto" "${preexec_functions:?}"
+}
+
+# shellcheck source=/dev/null
+SHUNIT_PARENT=$0 . $SHUNIT2
