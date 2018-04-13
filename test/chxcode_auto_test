@@ -56,8 +56,8 @@ test_auto_enter_subdir() {
   touch "$APPLICATIONS/Xcode-8.0.app"
   echo "8.0" > "$test_project_dir/.xcode-version"
   mkdir "$test_project_dir/subdir"
-
   cd "$test_project_dir" && chxcode_auto
+
   cd "subdir" && chxcode_auto
 
   assertEquals "should keep the current Xcode when entering a sub-directory" \
@@ -82,8 +82,8 @@ test_auto_modified_version() {
 test_auto_leave_versioned_dir() {
   touch "$APPLICATIONS/Xcode-8.0.app"
   echo "8.0" > "$test_project_dir/.xcode-version"
-
   cd "$test_project_dir" && chxcode_auto
+
   cd "$test_project_dir/.." && chxcode_auto
 
   assertNull "should reset the current Xcode when leaving a versioned directory" \
