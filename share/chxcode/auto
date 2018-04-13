@@ -3,12 +3,17 @@
 . ./test/helper
 
 function chxcode_auto() {
-  local dir="$PWD" version
+  local dir="$PWD/" version
 
-  if { read -r version <"$dir/.xcode-version"; } 2>/dev/null || [[ -n "$version" ]]; then
-    version="${version%%[[:space:]]}"
-    chxcode "$version"
-  fi
+  until [[ -z "$dir" ]]; do
+    dir="${dir%/*}"
+    if { read -r version <"$dir/.xcode-version"; } 2>/dev/null || [[ -n "$version" ]]; then
+      version="${version%%[[:space:]]}"
+      chxcode "$version"
+      return $?
+    fi
+  done
+
 }
 
 if [ -n "$ZSH_VERSION" ]; then

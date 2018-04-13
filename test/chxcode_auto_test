@@ -29,7 +29,7 @@ test_auto_loaded_in_bash() {
     "$(echo "$output" | grep ".*chxcode_auto.*")"
 }
 
-test_auto_enter_versioning_directory() {
+test_auto_enter_versioned_directory() {
   touch "$APPLICATIONS/Xcode-9.3.app"
   echo "9.3" > "$test_project_dir/.xcode-version"
 
@@ -37,6 +37,18 @@ test_auto_enter_versioning_directory() {
 
   assertEquals "should switch Xcode when entering a versioned directory" \
     "$APPLICATIONS/Xcode-9.3.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+}
+
+test_auto_enter_versioned_subdirectory() {
+  touch "$APPLICATIONS/Xcode-9.0.app"
+  echo "9.0" > "$test_project_dir/.xcode-version"
+  mkdir "$test_project_dir/subdir"
+
+  cd "$test_project_dir/subdir" && chxcode_auto || return 2
+
+  assertEquals "should switch Xcode when entering a versioned directory" \
+    "$APPLICATIONS/Xcode-9.0.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
