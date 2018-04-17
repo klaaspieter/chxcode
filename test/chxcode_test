@@ -10,7 +10,7 @@ test_exec_with_no_arguments() {
 
   xcodes=$(chxcode | tr '\n' ' ' | xargs)
 
-  assertEquals "should print installed xcodes" "9.3 9.4 1.0" "$xcodes"
+  assertEquals "should print installed xcodes" "1.0 9.3 9.4" "$xcodes"
 }
 
 test_change_unknown_xcode_reports_error() {

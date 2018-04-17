@@ -3,7 +3,7 @@
 APPLICATIONS=${APPLICATIONS-/Applications}
 
 find_xcodes() {
-  find "$APPLICATIONS" -maxdepth 1 -name "Xcode-*.app"
+  find "$APPLICATIONS" -maxdepth 1 -name "Xcode-*.app" | sort
 }
 
 xcode_version() {
