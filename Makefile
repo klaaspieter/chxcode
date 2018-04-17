@@ -1,7 +1,8 @@
 PREFIX?=/usr/local
 
-INSTALL_DIRS=`find share -type d 2>/dev/null`
-INSTALL_FILES=`find share -type f 2>/dev/null` Makefile
+DIRS=share test
+INSTALL_DIRS=`find $(DIRS) -type d 2>/dev/null`
+INSTALL_FILES=`find $(DIRS) -type f 2>/dev/null` Makefile
 
 test:
 	SHELL=`command -v bash` ./test/runner 2>/dev/null
