@@ -1,7 +1,5 @@
 # shellcheck shell=bash
 
-. ./test/helper
-
 function chxcode_auto() {
   local dir="$PWD/" version
 
