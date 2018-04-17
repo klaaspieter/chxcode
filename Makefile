@@ -4,7 +4,7 @@ INSTALL_DIRS=`find share -type d 2>/dev/null`
 INSTALL_FILES=`find share -type f 2>/dev/null`
 
 test:
-	SHELL=`command -v bash` ./test/runner
+	SHELL=`command -v bash` ./test/runner 2>/dev/null
 	SHELL=`command -v zsh` ./test/runner
 
 install:
