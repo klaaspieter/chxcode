@@ -1,0 +1,7 @@
+sudo: false
+os: osx
+language: c
+
+install: brew install shunit2 bash
+before_script: export SHUNIT2="$(command -v shunit2 2>/dev/null)"
+script: make test
