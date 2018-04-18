@@ -22,10 +22,9 @@ function chxcode_auto() {
 }
 
 if [ -n "$ZSH_VERSION" ]; then
-  if [[ "$preexec_functions" == *chxcode_auto* ]]; then
+  if [[ ! "$preexec_functions" == *chxcode_auto* ]]; then
     preexec_functions+="chxcode_auto"
   fi
-  preexec_functions+=("chxcode_auto")
 elif [ -n "$BASH_VERSION" ]; then
   trap '[[ "$BASH_COMMAND" != "$PROMPT_COMMAND" ]] && chxcode_auto' DEBUG
 fi
