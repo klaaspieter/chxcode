@@ -10,16 +10,28 @@ xcode_version() {
   basename "$1" | sed 's/Xcode-//' | sed 's/\.app//'
 }
 
-find_xcode_versions() {
+system_xcode_version() {
+  xcode_path="$(cd "$(xcode-select -p)/../../" && pwd)"
+  xcode_version "$xcode_path"
+}
+
+xcode_versions() {
+  system_version=$(system_xcode_version)
   for xcode in $(find_xcodes); do
-    xcode_version "$xcode"
+    version=$(xcode_version "$xcode")
+
+    if [ "$version" = "$system_version" ]; then
+      echo "* $version"
+    else
+      echo "  $version"
+    fi
   done
 }
 
 chxcode() {
   case "$1" in
     "")
-      find_xcode_versions
+      xcode_versions
       ;;
 
     *)
