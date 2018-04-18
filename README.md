@@ -1,4 +1,5 @@
-# chxcode
+# chxcode 
+[![Build Status](https://travis-ci.org/klaaspieter/chxcode.svg?branch=master)](https://travis-ci.org/klaaspieter/chxcode)
 
 Changes the current Xcode.
 
@@ -43,7 +44,6 @@ source /usr/local/share/chxcode/auto
 ## How it works
 
 Or; does this require root? Definitely not. You wouldn't want to provide your root password every time you use `chxcode` or `cd` into a versioned directory. `chxcode` uses the `DEVELOPER_DIR` environment variable. From `man xcode-select`:
-
 > Overrides the active developer directory. When DEVELOPER_DIR is set, its value will be used instead of the system-wide active developer directory.
 
 ## Test
