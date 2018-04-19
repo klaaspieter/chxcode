@@ -41,6 +41,15 @@ source /usr/local/share/chxcode/chxcode
 source /usr/local/share/chxcode/auto
 ```
 
+## Xcodes
+
+When `chxcode` is sourced it auto-detects Xcodes installed in `/Applications`. It finds Xcodes with the following file name format: `Xcode-[version].app`. For example with `Xcode.app`, `Xcode-9.1` and `Xcode-9.2` in `/Applications`, it will print:
+
+```sh
+  9.1
+  9.2
+```
+
 ## How it works
 
 Or; does this require root? Definitely not. You wouldn't want to provide your root password every time you use `chxcode` or `cd` into a versioned directory. `chxcode` uses the `DEVELOPER_DIR` environment variable. From `man xcode-select`:
