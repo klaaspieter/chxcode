@@ -1,11 +1,15 @@
-# shellcheck shell=sh
+# shellcheck shell=bash
 
 APPLICATIONS=${APPLICATIONS-/Applications}
 
-find_xcodes() {
-  mdfind -onlyin "$APPLICATIONS" "kMDItemCFBundleIdentifier='com.apple.dt.Xcode'" \
-    | sort
-}
+XCODES=()
+while read -r xcode; do
+  XCODES+=("$xcode")
+done < <(
+  mdfind -onlyin "$APPLICATIONS" \
+    "kMDItemCFBundleIdentifier='com.apple.dt.Xcode'"
+)
+
 
 xcode_version() {
   mdls --raw -name "kMDItemVersion" "$1"
@@ -18,7 +22,7 @@ system_xcode_version() {
 
 xcode_versions() {
   system_version=$(system_xcode_version)
-  for xcode in $(find_xcodes); do
+  for xcode in ${XCODES[*]}; do
     version=$(xcode_version "$xcode")
 
     if [ "$version" = "$system_version" ]; then
@@ -36,7 +40,7 @@ chxcode() {
       ;;
 
     *)
-      for xcode in $(find_xcodes); do
+      for xcode in ${XCODES[*]}; do
         version="$(xcode_version "$xcode")"
         match=""
         case "$version" in
@@ -53,6 +57,5 @@ chxcode() {
       fi
 
       export DEVELOPER_DIR="$match/Contents/Developer"
-
   esac
 }
