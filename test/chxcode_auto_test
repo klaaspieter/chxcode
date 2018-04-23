@@ -30,58 +30,52 @@ test_auto_loaded_in_bash() {
 }
 
 test_auto_enter_versioned_directory() {
-  touch "$APPLICATIONS/Xcode-9.3.app"
   echo "9.3" > "$test_project_dir/.xcode-version"
 
   cd "$test_project_dir" && chxcode_auto
 
   assertEquals "should switch Xcode when entering a versioned directory" \
-    "$APPLICATIONS/Xcode-9.3.app/Contents/Developer" \
+    "$APPLICATIONS/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
 test_auto_enter_versioned_subdirectory() {
-  touch "$APPLICATIONS/Xcode-9.0.app"
-  echo "9.0" > "$test_project_dir/.xcode-version"
+  echo "9.3" > "$test_project_dir/.xcode-version"
   mkdir "$test_project_dir/subdir"
 
   cd "$test_project_dir/subdir" && chxcode_auto
 
   assertEquals "should switch Xcode when entering a subdirectory of a versioned directory" \
-    "$APPLICATIONS/Xcode-9.0.app/Contents/Developer" \
+    "$APPLICATIONS/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
 test_auto_enter_subdir() {
-  touch "$APPLICATIONS/Xcode-8.0.app"
-  echo "8.0" > "$test_project_dir/.xcode-version"
-  mkdir "$test_project_dir/subdir"
+  mkdir -p "$test_project_dir/subdir"
+  echo "9.3" > "$test_project_dir/.xcode-version"
   cd "$test_project_dir" && chxcode_auto
 
   cd "subdir" && chxcode_auto
 
   assertEquals "should keep the current Xcode when entering a sub-directory" \
-    "$APPLICATIONS/Xcode-8.0.app/Contents/Developer" \
+    "$APPLICATIONS/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
 test_auto_modified_version() {
-  touch "$APPLICATIONS/Xcode-8.1.app"
-  touch "$APPLICATIONS/Xcode-8.2.app"
-  echo "8.1" > "$test_project_dir/.xcode-version"
+  echo "9.2" > "$test_project_dir/.xcode-version"
   cd "$test_project_dir" && chxcode_auto
 
-  echo "8.2" > "$test_project_dir/.xcode-version" && chxcode_auto
+  echo "9.3" > "$test_project_dir/.xcode-version" && chxcode_auto
 
   assertEquals "should detect changes to the Xcode version" \
-    "$APPLICATIONS/Xcode-8.2.app/Contents/Developer" \
+    "$APPLICATIONS/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 
 }
 
 test_auto_leave_versioned_dir() {
-  touch "$APPLICATIONS/Xcode-8.0.app"
-  echo "8.0" > "$test_project_dir/.xcode-version"
+  echo "9.2" > "$test_project_dir/.xcode-version"
   cd "$test_project_dir" && chxcode_auto
 
   cd "$test_project_dir/.." && chxcode_auto
@@ -92,8 +86,7 @@ test_auto_leave_versioned_dir() {
 }
 
 test_auto_unknown_version() {
-  touch "$APPLICATIONS/Xcode-7.0.app"
-  echo "7.0" > "$test_project_dir/.xcode-version"
+  echo "9.2" > "$test_project_dir/.xcode-version"
   mkdir "$test_project_dir/bad"
   echo "bad" > "$test_project_dir/bad/.xcode-version"
   cd "$test_project_dir" && chxcode_auto
@@ -101,7 +94,7 @@ test_auto_unknown_version() {
   cd bad && chxcode_auto
 
   assertEquals "should keep current Xcode version when loading an unknown version " \
-    "$APPLICATIONS/Xcode-7.0.app/Contents/Developer" \
+    "$APPLICATIONS/Xcode-9.2.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 

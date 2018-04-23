@@ -3,11 +3,12 @@
 APPLICATIONS=${APPLICATIONS-/Applications}
 
 find_xcodes() {
-  find "$APPLICATIONS" -maxdepth 1 -name "Xcode-*.app" | sort
+  mdfind -onlyin "$APPLICATIONS" "kMDItemCFBundleIdentifier='com.apple.dt.Xcode'" \
+    | sort
 }
 
 xcode_version() {
-  basename "$1" | sed 's/Xcode-//' | sed 's/\.app//'
+  mdls --raw -name "kMDItemVersion" "$1"
 }
 
 system_xcode_version() {
