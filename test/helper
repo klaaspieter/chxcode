@@ -3,14 +3,13 @@
 [ -z "$SHUNIT2" ] && SHUNIT2=/usr/local/bin/shunit2
 [ -n "$ZSH_VERSION" ] && setopt shwordsplit
 
+
+APPLICATIONS="$PWD/test/applications"
+export APPLICATIONS
 . ./share/chxcode/chxcode
-unset DEVELOPER_DIR
-unset APPLICATIONS
 
 setUp() {
   original_pwd="$PWD"
-  APPLICATIONS="$PWD/test/applications"
-  export APPLICATIONS
 
   tmpdir=$(mktemp -d)
   test_project_dir="$tmpdir/test/project"
@@ -19,7 +18,6 @@ setUp() {
 }
 
 tearDown() {
-  unset APPLICATIONS
   unset tmpdir
   unset DEVELOPER_DIR
   cd "$original_pwd" || exit 2
