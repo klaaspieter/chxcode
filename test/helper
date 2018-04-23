@@ -8,14 +8,13 @@ unset DEVELOPER_DIR
 unset APPLICATIONS
 
 setUp() {
-  tmpdir="$(mktemp -d)"
-
-  APPLICATIONS="$tmpdir/Applications"
-  mkdir "$APPLICATIONS"
+  original_pwd="$PWD"
+  APPLICATIONS="$PWD/test/applications"
   export APPLICATIONS
 
-  test_project_dir="$tmpdir/project"
-  mkdir "$test_project_dir"
+  tmpdir=$(mktemp -d)
+  test_project_dir="$tmpdir/test/project"
+  mkdir -p "$test_project_dir"
   export test_project_dir
 }
 
@@ -23,4 +22,5 @@ tearDown() {
   unset APPLICATIONS
   unset tmpdir
   unset DEVELOPER_DIR
+  cd "$original_pwd" || exit 2
 }
