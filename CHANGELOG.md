@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Cache Xcodes in `XCODES` environment variable when `chxcode` is first sourced. This is more more performant It also makes it possible for users to manually add Xcodes that `chxcode` can't find because Spotlight is disabled.
 - Show asterisk in front of currently selected Xcode when listing Xcode versions.
 
+## Removed
+
+- The `APPLICATIONS` variable. This is an implementation detail and shouldn't leak into a user's shell.
+
 ### Changed
 
 - Xcodes are found using `mdfind` instead of globs.
