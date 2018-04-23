@@ -35,7 +35,7 @@ test_auto_enter_versioned_directory() {
   cd "$test_project_dir" && chxcode_auto
 
   assertEquals "should switch Xcode when entering a versioned directory" \
-    "$APPLICATIONS/Xcode.app/Contents/Developer" \
+    "$search_path/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
@@ -46,7 +46,7 @@ test_auto_enter_versioned_subdirectory() {
   cd "$test_project_dir/subdir" && chxcode_auto
 
   assertEquals "should switch Xcode when entering a subdirectory of a versioned directory" \
-    "$APPLICATIONS/Xcode.app/Contents/Developer" \
+    "$search_path/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
@@ -58,7 +58,7 @@ test_auto_enter_subdir() {
   cd "subdir" && chxcode_auto
 
   assertEquals "should keep the current Xcode when entering a sub-directory" \
-    "$APPLICATIONS/Xcode.app/Contents/Developer" \
+    "$search_path/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 
@@ -69,7 +69,7 @@ test_auto_modified_version() {
   echo "9.3" > "$test_project_dir/.xcode-version" && chxcode_auto
 
   assertEquals "should detect changes to the Xcode version" \
-    "$APPLICATIONS/Xcode.app/Contents/Developer" \
+    "$search_path/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 
 }
@@ -94,7 +94,7 @@ test_auto_unknown_version() {
   cd bad && chxcode_auto
 
   assertEquals "should keep current Xcode version when loading an unknown version " \
-    "$APPLICATIONS/Xcode-9.2.app/Contents/Developer" \
+    "$search_path/Xcode-9.2.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
 

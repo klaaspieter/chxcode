@@ -4,8 +4,8 @@
 [ -n "$ZSH_VERSION" ] && setopt shwordsplit
 
 
-APPLICATIONS="$PWD/test/applications"
-export APPLICATIONS
+search_path="$PWD/test/applications"
+xcode_search_path="$search_path"
 . ./share/chxcode/chxcode
 
 setUp() {

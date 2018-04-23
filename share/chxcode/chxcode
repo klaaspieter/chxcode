@@ -1,15 +1,16 @@
 # shellcheck shell=bash
 
-APPLICATIONS=${APPLICATIONS-/Applications}
+xcode_search_path=${xcode_search_path-/}
 
 XCODES=()
 while read -r xcode; do
   XCODES+=("$xcode")
 done < <(
-  mdfind -onlyin "$APPLICATIONS" \
+  mdfind -onlyin "$xcode_search_path" \
     "kMDItemCFBundleIdentifier='com.apple.dt.Xcode'"
 )
 
+unset xcode_search_path
 
 xcode_version() {
   mdls --raw -name "kMDItemVersion" "$1"
