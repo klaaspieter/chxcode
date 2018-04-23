@@ -43,12 +43,9 @@ source /usr/local/share/chxcode/auto
 
 ## Xcodes
 
-When `chxcode` is sourced it auto-detects Xcodes installed in `/Applications`. It finds Xcodes with the following file name format: `Xcode-[version].app`. For example with `Xcode.app`, `Xcode-9.1` and `Xcode-9.2` in `/Applications`, it will print:
+When `chxcode` is sourced it auto-detects Xcodes installed in `/Applications`. After installing a new Xcode you _must_ restart the shell before chxcode can find them.
 
-```sh
-  9.1
-  9.2
-```
+`chxcode` finds Xcodes by using Spotlight to look for bundle identifier `com.apple.dt.Xcode` (see `man mdfind`).
 
 ## How it works
 
