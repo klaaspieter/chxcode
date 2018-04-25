@@ -45,11 +45,11 @@ source /usr/local/share/chxcode/auto
 
 When `chxcode` is sourced it auto-detects installed Xcodes. After installing a new Xcode you _must_ restart the shell before chxcode can find them.
 
-`chxcode` finds Xcodes by using Spotlight to look for bundle identifier `com.apple.dt.Xcode` (see `man mdfind`).
-
 ## How it works
 
-Or; does this require root? Definitely not. You wouldn't want to provide your root password every time you use `chxcode` or `cd` into a versioned directory. `chxcode` uses the `DEVELOPER_DIR` environment variable. From `man xcode-select`:
+`chxcode` uses Spotlight (through `mdfind`) to search for the `com.apple.dt.Xcode` bundle identifier. It then uses `mdls` to find the Xcode version. Switching Xcodes is done by setting the `DEVELOPER_DIR` environment variable.
+
+`man xcode-select` on the `DEVELOPER_DIR` environment variable:
 > Overrides the active developer directory. When DEVELOPER_DIR is set, its value will be used instead of the system-wide active developer directory.
 
 ## Test
