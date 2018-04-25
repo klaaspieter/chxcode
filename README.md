@@ -41,6 +41,27 @@ source /usr/local/share/chxcode/chxcode
 source /usr/local/share/chxcode/auto
 ```
 
+Auto looks for an `.xcode-version` file and automatically selects that version for the current folder and any of it's subfolders.
+
+For example:
+
+```sh
+$ xcode-select -p
+/Applications/Xcode-9.4.app/Contents/Developer
+$ chxcode
+  9.2
+  9.3
+* 9.4
+$ echo "9.3" > project/.xcode-version
+$ cd project
+$ xcode-select -p
+/Applications/Xcode-9.3.app/Contents/Developer
+$ chxcode
+  9.2
+* 9.3
+  9.4
+```
+
 ## Xcodes
 
 When `chxcode` is sourced it auto-detects installed Xcodes. After installing a new Xcode you _must_ restart the shell before chxcode can find them.
