@@ -7,6 +7,9 @@ test:
 	SHELL=`command -v bash` ./test/runner 2>/dev/null
 	SHELL=`command -v zsh` ./test/runner
 
+travis:
+	sleep 20
+
 install:
 	for dir in $(INSTALL_DIRS); do mkdir -p $$dir $(DESTDIR)$(PREFIX)/$$dir; done
 	for file in $(INSTALL_FILES); do cp $$file $(DESTDIR)$(PREFIX)/$$file; done

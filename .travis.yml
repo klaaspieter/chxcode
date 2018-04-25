@@ -2,6 +2,7 @@ sudo: false
 os: osx
 language: c
 
+before_install: make travis
 install: HOMEBREW_NO_AUTO_UPDATE=1 brew install shunit2 bash
 before_script: export SHUNIT2="$(command -v shunit2 2>/dev/null)"
 script: make test
