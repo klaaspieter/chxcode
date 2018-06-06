@@ -4,6 +4,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix an issue where auto changing Xcode didn't work for ZSH users.
+
 ## [0.0.2]
 
 ### Added
