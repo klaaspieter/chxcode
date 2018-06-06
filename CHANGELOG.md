@@ -4,6 +4,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [Unreleased]
 
+## [0.0.3]
+
 ### Fixed
 
 - Fix an issue where auto changing Xcode didn't work for ZSH users.
@@ -32,6 +34,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - sourceable auto script to automatically change the current Xcode based on a `.xcode-version` file.
 
 
-[Unreleased]: https://github.com/klaaspieter/chxcode/compare/HEAD...0.0.2
+[Unreleased]: https://github.com/klaaspieter/chxcode/compare/HEAD...0.0.3
+[0.0.3]: https://github.com/klaaspieter/chxcode/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/klaaspieter/chxcode/compare/0.0.1...0.0.2
 [0.0.1]: https://github.com/klaaspieter/chxcode/compare/970091f7002ba688efdc327f4ac71cfc398923f9...0.0.1
