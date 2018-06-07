@@ -23,7 +23,7 @@ $ chxcode
 Select Xcode for the current shell:
 
 ```sh
-$ chxhode 9.3
+$ chxcode 9.3
 $ chxcode
   9.2
 * 9.3
