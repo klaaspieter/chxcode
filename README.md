@@ -3,6 +3,13 @@
 
 Changes the current Xcode.
 
+## Installation
+
+```sh
+brew tap klaaspieter/formula
+brew install chxcode
+```
+
 ## Usage
 
 With the following in your `.bashrc`, `.zshrc` file:
