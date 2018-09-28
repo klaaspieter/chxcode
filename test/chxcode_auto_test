@@ -98,5 +98,16 @@ test_auto_unknown_version() {
     "$DEVELOPER_DIR"
 }
 
+test_auto_allows_overriding_version() {
+  echo "9.2" > "$test_project_dir/.xcode-version"
+  cd "$test_project_dir" && chxcode_auto
+
+  chxcode 9.3 && chxcode_auto
+
+  assertEquals "should override Xcode auto version" \
+    "$search_path/Xcode.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+}
+
 # shellcheck source=/dev/null
 SHUNIT_PARENT=$0 . $SHUNIT2

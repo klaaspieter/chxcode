@@ -20,5 +20,6 @@ setUp() {
 tearDown() {
   unset tmpdir
   unset DEVELOPER_DIR
+  unset XCODE_AUTO_VERSION
   cd "$original_pwd" || exit 2
 }
