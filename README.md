@@ -1,5 +1,5 @@
 # chxcode 
-[![Build Status](https://travis-ci.org/klaaspieter/chxcode.svg?branch=master)](https://travis-ci.org/klaaspieter/chxcode)
+![Build Status](https://github.com/klaaspieter/chxcode/workflows/CI/badge.svg)
 
 Changes the current Xcode.
 
