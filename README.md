@@ -100,7 +100,7 @@ zsh test/[name]_test
 bash test/[name]_test
 ```
 
-[shunit2]: https://github.com/kward/shunit://github.com/kward/shunit2 
+[shunit2]: https://github.com/kward/shunit2
 
 ## Acknowledgements
 
