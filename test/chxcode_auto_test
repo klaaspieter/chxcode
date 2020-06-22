@@ -4,13 +4,13 @@
 . ./test/helper
 
 test_auto_loaded_in_zsh() {
-  [ -n "$ZSH_VERSION" ] || return
+  [ -n "$ZSH_VERSION" ] || return 0
 
   assertEquals "chxcode_auto" "${preexec_functions:?}"
 }
 
 test_auto_load_is_idempotent_in_zsh() {
-  [ -n "$ZSH_VERSION" ] || return
+  [ -n "$ZSH_VERSION" ] || return 0
 
   . ./share/chxcode/auto
 
@@ -20,7 +20,7 @@ test_auto_load_is_idempotent_in_zsh() {
 }
 
 test_auto_loaded_in_bash() {
-  [ -n "$BASH_VERSION" ] || return
+  [ -n "$BASH_VERSION" ] || return 0
 
   command=". $PWD/share/chxcode/auto && trap -p DEBUG"
   output="$("$SHELL" -c "$command")"
