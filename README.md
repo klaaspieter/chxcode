@@ -1,5 +1,5 @@
 # chxcode 
-![Build Status](https://github.com/klaaspieter/chxcode/workflows/CI/badge.svg)
+![Build Status](https://github.com/klaaspieter/chxcode/workflows/ci/badge.svg)
 
 Changes the current Xcode.
 
