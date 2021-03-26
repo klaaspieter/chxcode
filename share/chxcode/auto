@@ -1,13 +1,41 @@
 # shellcheck shell=bash
 
+# https://github.com/asdf-vm/asdf/blob/bd21c99a0a04018b51e528acff8d237bff8780c4/lib/utils.bash#L626-L638
+strip_tool_version_comments() {
+  local tool_version_path="$1"
+
+  while IFS= read -r tool_line || [ -n "$tool_line" ]; do
+    # Remove whitespace before pound sign, the pound sign, and everything after it
+    new_line="$(cut -f1 -d"#" <<<"$tool_line" | sed -e 's/[[:space:]]*$//')"
+
+    # Only print the line if it is not empty
+    if [[ -n "$new_line" ]]; then
+      printf "%s\\n" "$new_line"
+    fi
+  done <"$tool_version_path"
+}
+
+function version_from_file() {
+  local version
+
+  if { read -r version <"$1/.xcode-version"; } 2>/dev/null; then
+    version="${version%%[[:space:]]}"
+  elif [ -f "$1/.tool-versions" ]; then
+    version=$(strip_tool_version_comments "$1/.tool-versions" |\
+      grep "^xcode " |\
+      sed -e "s/^xcode //")
+  fi
+
+  printf '%s' "$version"
+}
+
 function chxcode_auto() {
   local dir="$PWD/" version
 
   until [[ -z "$dir" ]]; do
     dir="${dir%/*}"
-    if { read -r version <"$dir/.xcode-version"; } 2>/dev/null || [[ -n "$version" ]]; then
-      version="${version%%[[:space:]]}"
-
+    version=$(version_from_file "$dir")
+    if [[ -n "$version" ]]; then
       if [[ "$version" == "$XCODE_AUTO_VERSION" ]]; then
         return
       else

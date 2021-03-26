@@ -26,10 +26,10 @@ xcode_versions() {
   versions=()
   for xcode in ${XCODES[*]}; do
     version=$(xcode_version "$xcode")
-    versions+=${version}
+    versions+=("$version")
   done
 
-  IFS=$'\n' versions=($(sort -n <<<"${versions[*]}")); unset IFS
+  IFS=$'\n' versions=("$(sort -n <<<"${versions[*]}")"); unset IFS
 
   for version in ${versions[*]}; do
     if [ "$version" = "$system_version" ]; then
