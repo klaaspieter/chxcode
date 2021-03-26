@@ -1,0 +1,19 @@
+#!/bin/sh
+
+xcodes_path="$PWD/test/applications"
+
+while true; do
+  mdimport "$xcodes_path"
+  mdls "$xcodes_path"
+
+  output="$(mdfind -onlyin "$xcodes_path" "kMDItemCFBundleIdentifier='com.apple.dt.Xcode'")"
+
+  if [ -z "$output" ]; then
+    echo "mdfind did not find any Xcodes at $xcodes_path"
+    ls "$xcodes_path"
+    sleep 1
+  else
+    echo "found '$output'"
+    break
+  fi
+done
