@@ -3,11 +3,11 @@
 . ./test/helper
 
 test_exec_with_no_arguments() {
- export DEVELOPER_DIR="$search_path/Xcode.app/Contents/Developer"
+  export DEVELOPER_DIR="$search_path/Xcode.app/Contents/Developer"
 
   xcodes=$(chxcode | tr '\n' ' ' | xargs)
 
-  assertEquals "should print installed xcodes" "9.2 * 9.3" "$xcodes"
+  assertEquals "should print installed xcodes" "* 9.3 9.2" "$xcodes"
 }
 
 test_change_unknown_xcode_reports_error() {
