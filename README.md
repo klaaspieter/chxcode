@@ -41,14 +41,25 @@ $ echo "$DEVELOPER_DIR"
 
 ## Auto-switching
 
-To automatically switch the current Xcode version when you `cd` between different directories, load `auto` in `~/.bashrc` or `.zshrc`:
+To automatically switch the current Xcode version when you `cd` between different directories, load `auto` in `~/.bashrc` or `~/.zshrc`.
+
+### Intel
 
 ```sh
 source /usr/local/share/chxcode/chxcode
 source /usr/local/share/chxcode/auto
 ```
 
-Auto looks for an `.xcode-version` file and automatically selects that version for the current folder and any of it's subfolders.
+### Apple Silicon
+
+```sh
+source /opt/homebrew/opt/share/chxcode/chxcode
+source /opt/homebrew/opt/share/chxcode/auto
+```
+
+(If you're unsure then simply follow the instructions Homebrew showed you after installation. Run `brew info chxcode` to see the instructions again.)
+
+`auto` looks for an `.xcode-version` file and automatically selects that version for the current folder and any of it's subfolders.
 
 For example:
 
