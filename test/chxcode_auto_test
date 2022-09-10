@@ -39,6 +39,16 @@ test_auto_enter_versioned_directory() {
     "$DEVELOPER_DIR"
 }
 
+test_auto_enter_tool_versions_directory() {
+  echo "xcode 9.3\nruby 2.6" > "$test_project_dir/.tool-versions"
+
+  cd "$test_project_dir" && chxcode_auto
+
+  assertEquals "should switch Xcode when entering a .tool-versions directory" \
+    "$search_path/Xcode.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+}
+
 test_auto_enter_versioned_subdirectory() {
   echo "9.3" > "$test_project_dir/.xcode-version"
   mkdir "$test_project_dir/subdir"
@@ -46,6 +56,17 @@ test_auto_enter_versioned_subdirectory() {
   cd "$test_project_dir/subdir" && chxcode_auto
 
   assertEquals "should switch Xcode when entering a subdirectory of a versioned directory" \
+    "$search_path/Xcode.app/Contents/Developer" \
+    "$DEVELOPER_DIR"
+}
+
+test_auto_enter_tool_versions_subdirectory() {
+  echo "xcode 9.3\nruby2.6" > "$test_project_dir/.tool-versions"
+  mkdir "$test_project_dir/subdir"
+
+  cd "$test_project_dir/subdir" && chxcode_auto
+
+  assertEquals "should switch Xcode when entering a subdirectory of a .tool-versions directory" \
     "$search_path/Xcode.app/Contents/Developer" \
     "$DEVELOPER_DIR"
 }
