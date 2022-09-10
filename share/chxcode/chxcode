@@ -23,9 +23,15 @@ system_xcode_version() {
 
 xcode_versions() {
   system_version=$(system_xcode_version)
+  versions=()
   for xcode in ${XCODES[*]}; do
     version=$(xcode_version "$xcode")
+    versions+=("$version")
+  done
 
+  IFS=$'\n' versions=($(sort -n <<<"${versions[*]}")); unset IFS
+
+  for version in ${versions[*]}; do
     if [ "$version" = "$system_version" ]; then
       echo "* $version"
     else

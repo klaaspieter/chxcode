@@ -12,8 +12,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - run: mdutil -s /
+
+    - run: sudo mdutil -E /
+
     - name: Install shunit2
       run: brew install shunit2
+
+    - name: Wait for spotlight to index our test Xcodes directory
+      run: ./bin/wait-for-spotlight
+
+    - name: Run mdfind
+      run: mdfind -onlyin "$PWD/test/applications" "kMDItemCFBundleIdentifier='com.apple.dt.Xcode'"
 
     - name: Run tests
       run: make test
